@@ -1,0 +1,9 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  rust:
+    uses: UniFormat/.github/.github/workflows/rust-ci.yml@main
+    with:
+      repo: uniformat-cli
+      siblings: uniformat-core uniformat-sas uniformat-conformance
+    secrets: inherit
