@@ -25,7 +25,7 @@ cargo build --release          # binary: target/release/uniformat
 UNIFORMAT_CORPUS=<corpus> cargo test
 ```
 
-Status: 0.1, not published. License `MIT OR Apache-2.0` (provisional).
+Status: 0.1, public source; packages not yet published to registries. License `MIT OR Apache-2.0` (provisional).
 
 ## Security checks
 

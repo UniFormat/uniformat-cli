@@ -4,10 +4,10 @@ permissions:
   contents: read
 jobs:
   rust:
-    uses: UniFormat/.github/.github/workflows/rust-ci.yml@d3d2936bdfedc251a7099d73c9496dbdb33c9dc2
+    uses: UniFormat/.github/.github/workflows/rust-ci.yml@95bbdd08c862243584a2366d2e69b7ab3a4ae656
     with:
       repo: uniformat-cli
       siblings: uniformat-core uniformat-sas uniformat-conformance
-      sibling-refs: '{"uniformat-core": "5afd0cf15c22c82ef0cf1bf0fecdb54cd0e2abd9", "uniformat-sas": "aad0c52c0b4e9ab0a12c3608cf732d044c3df6c0", "uniformat-conformance": "f060db8122e642e9fb2950d3bdbf4e6a8a19da07"}'
+      sibling-refs: '{"uniformat-core": "4075555dcf669e3c598c871ce280dda5ffc92234", "uniformat-sas": "b0a112fef120e5982cb35d4cd15e825b5713c0a5", "uniformat-conformance": "b75d53f3c0523b20500200083637f74aa1a702b9"}'
     secrets:
       CI_TOKEN: ${{ secrets.CI_TOKEN }}
