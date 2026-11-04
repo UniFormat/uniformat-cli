@@ -1,9 +1,13 @@
 name: ci
 on: [push, pull_request]
+permissions:
+  contents: read
 jobs:
   rust:
-    uses: UniFormat/.github/.github/workflows/rust-ci.yml@main
+    uses: UniFormat/.github/.github/workflows/rust-ci.yml@d3d2936bdfedc251a7099d73c9496dbdb33c9dc2
     with:
       repo: uniformat-cli
       siblings: uniformat-core uniformat-sas uniformat-conformance
-    secrets: inherit
+      sibling-refs: '{"uniformat-core": "5afd0cf15c22c82ef0cf1bf0fecdb54cd0e2abd9", "uniformat-sas": "aad0c52c0b4e9ab0a12c3608cf732d044c3df6c0", "uniformat-conformance": "f060db8122e642e9fb2950d3bdbf4e6a8a19da07"}'
+    secrets:
+      CI_TOKEN: ${{ secrets.CI_TOKEN }}

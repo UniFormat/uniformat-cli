@@ -26,3 +26,9 @@ UNIFORMAT_CORPUS=<corpus> cargo test
 ```
 
 Status: 0.1, not published. License `MIT OR Apache-2.0` (provisional).
+
+## Security checks
+
+`cargo test --locked` runs a synthetic conversion regression without a corpus: it checks private-file permissions and that a resource-limit failure leaves the destination unchanged. External corpus checks are explicitly ignored and require `UNIFORMAT_CORPUS=... cargo test --locked -- --ignored`.
+
+SAS reads have bounded output columns and batch buffers. Use `--read-opt max_batch_bytes=N` or `--read-opt max_output_columns=N` to choose a different trusted-input budget. Writes create private temporary files; new Unix files are 0600 and replacements preserve ordinary permission bits. Destination directories must be trusted; extended ACLs are not copied. Run `cargo deny --locked --all-features check advisories` before publishing; CI pins both actions and sibling commits and audits development dependencies too.

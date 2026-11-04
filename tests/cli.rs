@@ -34,11 +34,9 @@ fn usage_and_errors() {
 }
 
 #[test]
+#[ignore = "external SAS corpus: set UNIFORMAT_CORPUS and run with --ignored"]
 fn info_count_csv_and_convert_on_the_corpus() {
-    let Some(corpus) = Corpus::from_env() else {
-        eprintln!("UNIFORMAT_CORPUS not set: test skipped");
-        return;
-    };
+    let corpus = Corpus::require_from_env();
     let file = corpus.root().join("files/taille/taille_n50000_no.sas7bdat");
     let count = bin().arg("count").arg(&file).output().unwrap();
     assert_eq!(String::from_utf8_lossy(&count.stdout).trim(), "50000");
@@ -79,8 +77,8 @@ fn info_count_csv_and_convert_on_the_corpus() {
     let miss = corpus
         .root()
         .join("files/valeurs/valeurs_manquants_no.sas7bdat");
-    let dir = std::env::temp_dir().join(format!("uniformat-cli-{}", std::process::id()));
-    std::fs::create_dir_all(&dir).unwrap();
+    let temporary = uniformat_testkit::tempdir().unwrap();
+    let dir = temporary.path();
     let dst = dir.join("copy.sas7bdat");
     let conv = bin()
         .args([
@@ -127,5 +125,4 @@ fn info_count_csv_and_convert_on_the_corpus() {
         .unwrap();
     assert_eq!(bad.status.code(), Some(2));
     assert!(!never.exists());
-    std::fs::remove_dir_all(&dir).unwrap();
 }

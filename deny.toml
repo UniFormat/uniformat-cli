@@ -1,0 +1,11 @@
+# CI and development tools are part of the security boundary.
+[graph]
+all-features = true
+exclude-dev = false
+
+[advisories]
+version = 2
+unmaintained = "all"
+unsound = "all"
+yanked = "deny"
+ignore = []
